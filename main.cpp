@@ -35,7 +35,7 @@ class Note {
     private:
         string name;
         string timestamp;
-        string content;
+        string content = "";
     
     public:
         // Constructor
@@ -256,7 +256,7 @@ void listNotes() {
 
     for (const auto& entry : dirIter) {
         auto path = entry.path();
-        cout << path.stem().string() << "\n";
+        cout << "> " << path.stem().string() << "\n";
     }
 
     cout << "\n";
@@ -294,13 +294,14 @@ void promptHandler() {
                     "- 'app [note]' to append an existing note.\n"
                     "- 'ow [note]' to overwrite an existing note.\n"
                     "- 'del [note]' to delete an existing note.\n"
+                    "- 'ls' to list all saved files.\n"
                     "- 'cls' to clear the screen.\n"
                     "- 'exit' to exit the program.\n\n";
         
         } else if (cmd == "cls") {
             system(clearScreen);
 
-        } else if (cmd == "list") {
+        } else if (cmd == "ls") {
             listNotes();
         
         // Any conditions after these require valid input for filenames.
@@ -335,7 +336,7 @@ void promptHandler() {
 /// create and load notes through their terminal.
 int main() {
     cout << "Welcome to CPPNotes!\n";
-    cout << "Enter a command (new | app | ow | list | del | help | cls | "
+    cout << "Enter a command (help | new | app | ow | del | ls | cls | "
             "exit)\n\n";
 
     // Make sure the save directory 'savedNotes\' always exists.
