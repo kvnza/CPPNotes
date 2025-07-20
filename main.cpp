@@ -35,7 +35,7 @@ class Note {
     private:
         string name;
         string timestamp;
-        string content = "";
+        string content;
     
     public:
         // Constructor
